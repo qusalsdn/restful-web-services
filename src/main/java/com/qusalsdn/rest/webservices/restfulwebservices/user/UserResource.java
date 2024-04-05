@@ -1,8 +1,6 @@
 package com.qusalsdn.rest.webservices.restfulwebservices.user;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,13 +12,18 @@ public class UserResource {
         this.service = service;
     }
 
-    @RequestMapping(path = "/users")
+    @GetMapping(path = "/users")
     public List<User> retrieveAllUsers() {
         return service.findAll();
     }
 
-    @RequestMapping(path = "/users/{id}")
+    @GetMapping(path = "/users/{id}")
     public User retrieveUser(@PathVariable int id) {
         return service.findOne(id);
+    }
+
+    @PostMapping(path = "/users")
+    public void createUser(@RequestBody User user) {
+        service.save(user);
     }
 }
