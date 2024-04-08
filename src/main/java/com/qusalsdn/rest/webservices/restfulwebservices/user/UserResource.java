@@ -1,5 +1,6 @@
 package com.qusalsdn.rest.webservices.restfulwebservices.user;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -28,7 +29,7 @@ public class UserResource {
     }
 
     @PostMapping(path = "/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) { // @Valid 어노테이션으로 유효성 검증을 수행할 수 있다.
         User savedUser = service.save(user);
         // ServletUriComponentsBuilder.fromCurrentRequest(): 현재 URL, .path("/{id}"): 현재 URL에 "/{id}" 추가, .buildAndExpand(savedUser.getId():id를 생성된 사용자의 아이디로 변경, .toUri(): URL로 변환하여 반환
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId()).toUri();
