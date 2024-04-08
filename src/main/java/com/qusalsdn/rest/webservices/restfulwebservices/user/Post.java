@@ -16,11 +16,6 @@ public class Post {
     @JsonIgnore
     private User user;
 
-    public Post(Integer id, String description) {
-        this.id = id;
-        this.description = description;
-    }
-
     public Integer getId() {
         return id;
     }
