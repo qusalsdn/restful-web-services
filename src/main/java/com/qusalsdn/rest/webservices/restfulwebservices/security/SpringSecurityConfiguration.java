@@ -11,7 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SpringSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated()); // 모든 요청이 인증을 받는다.
+//        http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated()); // 모든 요청이 인증을 받는다.
+        http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()); // 모든 요청이 인증을 받지 않는다.
         http.httpBasic(Customizer.withDefaults()); // 로그인 웹 페이지가 아닌 단순 팝업창으로 인증을 요청하게 한다.
         http.csrf(AbstractHttpConfigurer::disable); // csrf 비활성화
         return http.build();
