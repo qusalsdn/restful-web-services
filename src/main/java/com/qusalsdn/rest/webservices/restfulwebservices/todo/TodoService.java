@@ -24,8 +24,10 @@ public class TodoService {
         return todos.stream().filter(predicate).toList();
     }
 
-    public void addTodo(String userName, String description, LocalDate targetDate, Boolean done) {
-        todos.add(new Todo(todoCount++, userName, description, targetDate, done));
+    public Todo addTodo(String userName, String description, LocalDate targetDate, Boolean done) {
+        Todo todo = new Todo(todoCount++, userName, description, targetDate, done);
+        todos.add(todo);
+        return todo;
     }
 
     public void deleteById(int id) {
