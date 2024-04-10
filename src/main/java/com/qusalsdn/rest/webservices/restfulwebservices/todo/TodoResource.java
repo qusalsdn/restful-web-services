@@ -1,5 +1,7 @@
 package com.qusalsdn.rest.webservices.restfulwebservices.todo;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,5 +19,16 @@ public class TodoResource {
     @GetMapping(path = "/users/{userName}/todos")
     public List<Todo> retrieveTodos(@PathVariable String userName) {
         return todoService.findByUserName(userName);
+    }
+
+    @GetMapping(path = "/users/{userName}/todos/{id}")
+    public Todo retrieveTodo(@PathVariable String userName, @PathVariable int id) {
+        return todoService.findById(id);
+    }
+
+    @DeleteMapping(path = "/users/{userName}/todos/{id}")
+    public ResponseEntity<Void> deleteTodo(@PathVariable int id) {
+        todoService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
