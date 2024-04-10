@@ -16,6 +16,11 @@ public class HelloWorldController {
         this.messageSource = messageSource;
     }
 
+    @GetMapping(path = "/basic-auth")
+    public String basicAuthCheck() {
+        return "Success";
+    }
+
     @GetMapping(path = "/hello-world")
     public String helloWorld() {
         return "Hello World~!";
