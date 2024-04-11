@@ -1,5 +1,6 @@
 package com.qusalsdn.rest.webservices.restfulwebservices.todo;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +37,7 @@ public class TodoJpaResource {
     }
 
     @PostMapping(path = "/users/{userName}/todos")
-    public Todo updateTodo(@PathVariable String userName, @RequestBody Todo todo) {
+    public Todo createTodo(@PathVariable String userName, @RequestBody Todo todo) {
         todo.setUserName(userName);
         todo.setId(null);
         return todoRepository.save(todo);
